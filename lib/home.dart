@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_website/footer.dart';
+import 'package:my_website/header.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -36,9 +38,9 @@ class _HomeState extends State<Home> {
           elevation: 10,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
-          color: const Color.fromRGBO(201, 173, 167, 1),
+          color: const Color.fromRGBO(212, 163, 115, 1),
           child: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: [
                 const Text(
@@ -46,7 +48,7 @@ class _HomeState extends State<Home> {
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Image.asset("lib/images/image3.png"),
                 ),
                 const Text(
@@ -54,61 +56,69 @@ class _HomeState extends State<Home> {
                   style: TextStyle(fontSize: 20),
                   overflow: TextOverflow.clip,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color.fromRGBO(74, 78, 105, 1),
+                        color: Color.fromRGBO(0, 0, 0, 1),
                       ),
                       child: const Text(
                         "Skill",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color.fromRGBO(74, 78, 105, 1),
+                        color: Color.fromRGBO(0, 0, 0, 1),
                       ),
                       child: const Text(
                         "Skill",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color.fromRGBO(74, 78, 105, 1),
+                        color: Color.fromRGBO(0, 0, 0, 1),
                       ),
                       child: const Text(
                         "Skill",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color.fromRGBO(74, 78, 105, 1),
+                        color: Color.fromRGBO(0, 0, 0, 1),
                       ),
                       child: const Text(
                         "Skill",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                   ],
@@ -124,52 +134,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(250, 237, 205, 1),
-        elevation: 0,
-        toolbarHeight: 70,
-        leading: Container(
-          padding: EdgeInsets.all(15),
-          child: Image.asset(
-            "lib/images/DB.png",
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "Home",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "Experience",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "Blog",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "Contact me",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Header("Home"),
             Container(
-              color: Color.fromRGBO(250, 237, 205, 1),
+              color: const Color.fromRGBO(250, 237, 205, 1),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -178,12 +148,12 @@ class _HomeState extends State<Home> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "I'm Dishu Bansal",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                            fontSize: 72,
+                            fontSize: 64,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -195,16 +165,38 @@ class _HomeState extends State<Home> {
                           ),
                           textAlign: TextAlign.start,
                         ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        MaterialButton(
+                          onPressed: () {
+                            return null;
+                          },
+                          color: const Color.fromRGBO(212, 163, 115, 1),
+                          padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: const Text(
+                            "Learn More >",
+                            style: TextStyle(
+                                fontSize: 25,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
                       ],
                     ),
                   ),
-                  Image.asset("lib/images/image1.png"),
+                  Image.asset(
+                    "lib/images/image1.png",
+                  ),
                 ],
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: Image.asset("lib/images/image2.png").image,
@@ -222,7 +214,7 @@ class _HomeState extends State<Home> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * 0.67,
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: PageView.builder(
                         onPageChanged: (value) {
                           setState(() {
@@ -235,6 +227,63 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  const Text(
+                    "Experiences",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Image.asset("lib/images/image4.png"),
+                      Flexible(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Habitant rutrum vel nec fringilla leo tincidunt. Commodo ac at vestibulum quisque tortor varius. Consectetur nunc auctor proin mauris ac scelerisque nullam elementum. Arcu sed morbi amet cras accumsan cum. Pretium tincidunt integer accumsan, blandit ultrices eget varius lectus. Sapien aliquam nisl ullamcorper risus. Ipsum tortor quam eget sem nec, neque odio.",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                              overflow: TextOverflow.clip,
+                              softWrap: true,
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            MaterialButton(
+                              onPressed: () {
+                                return null;
+                              },
+                              color: const Color.fromRGBO(212, 163, 115, 1),
+                              padding: const EdgeInsets.all(30),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                              ),
+                              child: const Text(
+                                "Explore All",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Footer(),
           ],
         ),
       ),
