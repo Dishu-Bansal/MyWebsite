@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:my_website/ContactMe.dart';
+import 'package:my_website/blog.dart';
+import 'package:my_website/experiences.dart';
 import 'package:my_website/home.dart';
 import 'package:my_website/projects.dart';
 
 class Header extends StatelessWidget {
   String page;
   Header(String this.page, {Key? key}) : super(key: key);
+
+  Route _createRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
 
   Widget createButton(String text, BuildContext context) {
     bool selected = (page == text);
@@ -16,14 +37,15 @@ class Header extends StatelessWidget {
         onPressed: () {
           if (!selected) {
             if (text == "Home") {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => Home()));
+              Navigator.of(context).push(_createRoute(Home()));
             } else if (text == "Projects") {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => Projects()));
+              Navigator.of(context).push(_createRoute(Projects()));
             } else if (text == "Contact Me") {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => ContactMe()));
+              Navigator.of(context).push(_createRoute(ContactMe()));
+            } else if (text == "Experiences") {
+              Navigator.of(context).push(_createRoute(Experiences()));
+            } else if (text == "Blog") {
+              Navigator.of(context).push(_createRoute(Blog()));
             }
           }
         },
@@ -31,6 +53,12 @@ class Header extends StatelessWidget {
             ? Colors.transparent
             : const Color.fromRGBO(212, 163, 115, 1),
         elevation: selected ? 0 : 2,
+        hoverColor: Colors.transparent,
+        focusElevation: 0,
+        hoverElevation: 0,
+        highlightElevation: 0,
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: selected
             ? Column(
