@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:my_website/constants.dart';
+import 'package:my_website/footer.dart';
 import 'package:my_website/header.dart';
 
 class Projects extends StatefulWidget {
@@ -62,7 +63,8 @@ class _ProjectsState extends State<Projects> {
                   ],
                 ),
               ),
-            )
+            ),
+            Footer(),
           ],
         ),
       ),
