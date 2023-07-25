@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_website/constants.dart';
+import 'package:my_website/experiences.dart';
 import 'package:my_website/footer.dart';
 import 'package:my_website/header.dart';
+import 'package:my_website/projects.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -43,85 +46,106 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                const Text(
-                  "Project 1",
+                Text(
+                  projects.elementAt(index).name,
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 Container(
                   padding: const EdgeInsets.all(10),
                   child: Image.asset("lib/images/image3.png"),
                 ),
-                const Text(
-                  "Dignissim condimentum fringilla id porttitor feugiat vel. Sapien amet volutpat et felis, pulvinar vestibulum ut. Purus sit egestas volutpat arcu, mattis at ut eget.",
+                Text(
+                  projects.elementAt(index).shortSummary,
                   style: TextStyle(fontSize: 20),
                   overflow: TextOverflow.clip,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color.fromRGBO(0, 0, 0, 1),
+                Expanded(child: SizedBox()),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: projects
+                        .elementAt(index)
+                        .skills
+                        .map((e) => Container(
+                              margin: const EdgeInsets.all(5),
+                              padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                              ),
+                              child: Text(
+                                e,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ))
+                        .toList(),
+                    /*[
+                      Container(
+                        margin: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                        child: const Text(
+                          "Skill",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
-                      child: const Text(
-                        "Skill",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                      Container(
+                        margin: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                        child: const Text(
+                          "Skill",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color.fromRGBO(0, 0, 0, 1),
+                      Container(
+                        margin: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                        child: const Text(
+                          "Skill",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
-                      child: const Text(
-                        "Skill",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                      Container(
+                        margin: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                        child: const Text(
+                          "Skill",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                      ),
-                      child: const Text(
-                        "Skill",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                      ),
-                      child: const Text(
-                        "Skill",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ],
+                    ],*/
+                  ),
                 ),
               ],
             ),
@@ -200,22 +224,56 @@ class _HomeState extends State<Home> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: Image.asset("lib/images/image2.png").image,
+                  opacity: 0.3,
                 ),
               ),
               child: Column(
                 children: [
-                  const Text(
-                    "Projects",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 72,
-                    ),
+                  Row(
+                    children: [
+                      Expanded(child: SizedBox()),
+                      const Text(
+                        "Projects",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 60,
+                        ),
+                      ),
+                      Expanded(child: SizedBox()),
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => Projects()));
+                        },
+                        color: secondaryColor,
+                        padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
+                        child: const Row(
+                          children: [
+                            Text(
+                              "All",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            Text(
+                              ">",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.67,
+                    height: MediaQuery.of(context).size.height * 0.8,
                     padding: const EdgeInsets.all(10),
                     child: PageView.builder(
+                        itemCount: projects.length,
                         onPageChanged: (value) {
                           setState(() {
                             currentpage = value;
@@ -234,7 +292,7 @@ class _HomeState extends State<Home> {
                   const Text(
                     "Experiences",
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 40,
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                   ),
@@ -246,20 +304,24 @@ class _HomeState extends State<Home> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              "Habitant rutrum vel nec fringilla leo tincidunt. Commodo ac at vestibulum quisque tortor varius. Consectetur nunc auctor proin mauris ac scelerisque nullam elementum. Arcu sed morbi amet cras accumsan cum. Pretium tincidunt integer accumsan, blandit ultrices eget varius lectus. Sapien aliquam nisl ullamcorper risus. Ipsum tortor quam eget sem nec, neque odio.",
-                              style: TextStyle(
-                                fontSize: 20,
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: const Text(
+                                "Embark on a captivating journey through my dynamic career path, shaped by passion and expertise. Explore the mosaic of experiences that have defined my success, from humble beginnings to soaring accomplishments. Witness the lessons learned, skills honed, and dreams pursued, as each milestone paints a canvas of growth and determination. Uncover the insights gained from diverse industries and the collaborations that enriched my perspective. Join me in celebrating the triumphs, challenges, and joy that have woven together to create a truly remarkable career story.",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                ),
+                                overflow: TextOverflow.clip,
+                                softWrap: true,
                               ),
-                              overflow: TextOverflow.clip,
-                              softWrap: true,
                             ),
                             const SizedBox(
                               height: 30,
                             ),
                             MaterialButton(
                               onPressed: () {
-                                return null;
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Experiences()));
                               },
                               color: const Color.fromRGBO(212, 163, 115, 1),
                               padding: const EdgeInsets.all(30),
