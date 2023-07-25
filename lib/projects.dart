@@ -4,6 +4,8 @@ import 'package:my_website/constants.dart';
 import 'package:my_website/footer.dart';
 import 'package:my_website/header.dart';
 
+import 'Models/project_model.dart';
+
 class Projects extends StatefulWidget {
   const Projects({Key? key}) : super(key: key);
 
@@ -35,7 +37,7 @@ class _ProjectsState extends State<Projects> {
                     height: 30,
                   ),
                   Text(
-                    "Quam viverra facilisis diam aliquet pellentesque cras imperdiet quis. Ipsum, tristique feugiat purus integer vestibulum tellus at ac urna. Ac egestas enim lobortis maecenas. Rhoncus amet aenean nec enim nec diam. Est arcu quis habitant risus. Sit arcu amet vitae fringilla convallis est. Arcu ornare fermentum quam ultrices dis volutpat.",
+                    "Welcome to my Projects page, where innovation meets passion! As a 3rd year Computer Science student and software developer, I take immense pride in showcasing a diverse range of projects that exemplify my skills, creativity, and dedication to the world of technology. From web applications to mobile solutions and everything in between, each project represents a unique journey of problem-solving and learning. Join me on this immersive tour of my accomplishments, where you'll witness the fusion of cutting-edge technologies and my unwavering enthusiasm to make a meaningful impact through code. Get ready to explore a collection of projects that embody my commitment to excellence in the realm of software development.",
                     style: TextStyle(
                       fontSize: 24,
                     ),
@@ -47,7 +49,7 @@ class _ProjectsState extends State<Projects> {
               padding: EdgeInsets.all(20),
               child: ListView.separated(
                 shrinkWrap: true,
-                itemCount: 5,
+                itemCount: projects.length,
                 itemBuilder: (context, index) {
                   return createListTile(context, index);
                 },
@@ -72,13 +74,7 @@ class _ProjectsState extends State<Projects> {
   }
 
   Widget createListTile(BuildContext context, int index) {
-    List<String> skills = [
-      "Skill",
-      "Skill",
-      "Skill",
-      "Skill",
-      "Skill",
-    ];
+    Project current = projects.elementAt(index);
     if (index % 2 == 0) {
       return Stack(
         children: [
@@ -88,7 +84,7 @@ class _ProjectsState extends State<Projects> {
               children: [
                 Expanded(
                   child: Container(
-                    child: Carousel(),
+                    child: Carousel(index),
                   ),
                 ),
                 Container(
@@ -102,7 +98,7 @@ class _ProjectsState extends State<Projects> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Name",
+                          projects.elementAt(index).name,
                           style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
@@ -111,34 +107,41 @@ class _ProjectsState extends State<Projects> {
                         SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          "Nulla tortor facilisis vitae neque viverra felis, sagittis sem quis. Ut vitae molestie etiam ut. Felis erat egestas nisi, lacinia amet sit iaculis. Eget gravida faucibus consectetur pharetra, justo elit. Tellus nec est nunc nibh erat semper accumsan pellentesque. Volutpat et tristique cursus non arcu vitae. Porttitor proin sociis pretium gravida nulla. Blandit nulla a egestas posuere urna nunc donec nibh. Id sit et gravida at rhoncus. Lobortis dignissim arcu nisl at velit netus.",
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w500),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            projects.elementAt(index).mediumSummary,
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w500),
+                          ),
                         ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: skills.map((e) {
-                              return Container(
-                                margin: const EdgeInsets.all(5),
-                                padding:
-                                    const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  color: secondaryColor,
-                                ),
-                                child: Text(
-                                  e,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: black),
-                                ),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children:
+                                  projects.elementAt(index).skills.map((e) {
+                                return Container(
+                                  margin: const EdgeInsets.all(5),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    color: secondaryColor,
+                                  ),
+                                  child: Text(
+                                    e,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: black),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
                           ),
                         ),
                       ],
@@ -161,7 +164,7 @@ class _ProjectsState extends State<Projects> {
           ),
           Align(
             alignment: Alignment(-0.075, 0.0),
-            child: Text("MM/YYYY"),
+            child: Text(projects.elementAt(index).end),
           ),
           Positioned.directional(
             textDirection: TextDirection.ltr,
@@ -184,7 +187,7 @@ class _ProjectsState extends State<Projects> {
                 ),
                 Align(
                   alignment: Alignment(-0.075, 0.0),
-                  child: Text("DD/YYYY"),
+                  child: Text(projects.elementAt(index).start),
                 ),
               ],
             ),
@@ -204,43 +207,49 @@ class _ProjectsState extends State<Projects> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Name",
-                          style: TextStyle(
+                          current.name,
+                          style: const TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          "Nulla tortor facilisis vitae neque viverra felis, sagittis sem quis. Ut vitae molestie etiam ut. Felis erat egestas nisi, lacinia amet sit iaculis. Eget gravida faucibus consectetur pharetra, justo elit. Tellus nec est nunc nibh erat semper accumsan pellentesque. Volutpat et tristique cursus non arcu vitae. Porttitor proin sociis pretium gravida nulla. Blandit nulla a egestas posuere urna nunc donec nibh. Id sit et gravida at rhoncus. Lobortis dignissim arcu nisl at velit netus.",
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w500),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Text(
+                            current.mediumSummary,
+                            style: const TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w500),
+                          ),
                         ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: skills.map((e) {
-                              return Container(
-                                margin: const EdgeInsets.all(5),
-                                padding:
-                                    const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  color: secondaryColor,
-                                ),
-                                child: Text(
-                                  e,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: black),
-                                ),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: current.skills.map((e) {
+                                return Container(
+                                  margin: const EdgeInsets.all(5),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    color: secondaryColor,
+                                  ),
+                                  child: Text(
+                                    e,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: black),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
                           ),
                         ),
                       ],
@@ -252,9 +261,7 @@ class _ProjectsState extends State<Projects> {
                   color: primaryColor,
                 ),
                 Expanded(
-                  child: Container(
-                    child: Carousel(),
-                  ),
+                  child: Carousel(index),
                 ),
               ],
             ),
@@ -271,8 +278,8 @@ class _ProjectsState extends State<Projects> {
             ),
           ),
           Align(
-            alignment: Alignment(-0.075, 0.0),
-            child: Text("MM/YYYY"),
+            alignment: Alignment(0.075, 0.0),
+            child: Text(current.end),
           ),
           Positioned.directional(
             textDirection: TextDirection.ltr,
@@ -294,8 +301,8 @@ class _ProjectsState extends State<Projects> {
                   ),
                 ),
                 Align(
-                  alignment: Alignment(-0.075, 0.0),
-                  child: Text("DD/YYYY"),
+                  alignment: Alignment(0.075, 0.0),
+                  child: Text(current.start),
                 ),
               ],
             ),
@@ -307,22 +314,27 @@ class _ProjectsState extends State<Projects> {
 }
 
 class Carousel extends StatefulWidget {
-  const Carousel({Key? key}) : super(key: key);
+  int index;
+  Carousel(int this.index, {Key? key}) : super(key: key);
 
   @override
-  State<Carousel> createState() => _CarouselState();
+  State<Carousel> createState() => _CarouselState(index);
 }
 
 class _CarouselState extends State<Carousel> {
-  List<String> imgList = [
-    "lib/images/image3.png",
-    "lib/images/image3.png",
-    "lib/images/image3.png",
-    "lib/images/image3.png",
-    "lib/images/image3.png",
-  ];
+  int index;
+  late List<String> imgList;
   CarouselController _controller = new CarouselController();
   int _current = 0;
+
+  _CarouselState(int this.index);
+
+  @override
+  void initState() {
+    imgList = projects.elementAt(index).images;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> imageSliders = imgList.map((e) {
