@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_website/footer.dart';
 import 'package:my_website/header.dart';
 
+import 'Models/experiences_model.dart';
 import 'constants.dart';
 
 class Experiences extends StatefulWidget {
@@ -35,7 +36,7 @@ class _ExperiencesState extends State<Experiences> {
                     height: 30,
                   ),
                   Text(
-                    "Quam viverra facilisis diam aliquet pellentesque cras imperdiet quis. Ipsum, tristique feugiat purus integer vestibulum tellus at ac urna. Ac egestas enim lobortis maecenas. Rhoncus amet aenean nec enim nec diam. Est arcu quis habitant risus. Sit arcu amet vitae fringilla convallis est. Arcu ornare fermentum quam ultrices dis volutpat.",
+                    "Step into the realm of my Experiences page, where my journey as a Computer Science student and software developer comes to life. Here, I invite you to explore the milestones, challenges, and triumphs that have shaped my professional growth. From internships to personal projects, each experience has been a stepping stone towards honing my skills and nurturing a deep passion for technology. Join me as I share the invaluable lessons learned, the collaborations that have enriched my perspective, and the moments that have fueled my ambition to excel in the dynamic world of software development. Get ready to witness the evolution of my career and the dedication that fuels my drive to create innovative solutions that make a difference.",
                     style: TextStyle(
                       fontSize: 24,
                     ),
@@ -47,7 +48,7 @@ class _ExperiencesState extends State<Experiences> {
               padding: EdgeInsets.all(20),
               child: ListView.separated(
                 shrinkWrap: true,
-                itemCount: 5,
+                itemCount: experiences.length,
                 itemBuilder: (context, index) {
                   return createListTile(context, index);
                 },
@@ -56,7 +57,7 @@ class _ExperiencesState extends State<Experiences> {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+                        padding: const EdgeInsets.fromLTRB(4.25, 0, 0, 0),
                         child: Text(
                           "MM/YYYY",
                           style: TextStyle(color: Colors.transparent),
@@ -81,20 +82,17 @@ class _ExperiencesState extends State<Experiences> {
   }
 
   Widget createListTile(BuildContext context, int index) {
+    Experience current = experiences.elementAt(index);
     Widget date = Padding(
       padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.topCenter,
-        child: Text("MM/YYYY"),
+        child: Text(
+          current.end,
+          style: TextStyle(color: Colors.transparent),
+        ),
       ),
     );
-    List<String> skills = [
-      "Skill",
-      "Skill",
-      "Skill",
-      "Skill",
-      "Skill",
-    ];
     return Stack(
       children: [
         IntrinsicHeight(
@@ -116,7 +114,7 @@ class _ExperiencesState extends State<Experiences> {
                       Row(
                         children: [
                           Text(
-                            "Name",
+                            current.name,
                             style: TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
@@ -130,7 +128,7 @@ class _ExperiencesState extends State<Experiences> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: skills.map((e) {
+                                  children: current.skills.map((e) {
                                     return Container(
                                       margin: const EdgeInsets.all(5),
                                       padding: const EdgeInsets.fromLTRB(
@@ -156,29 +154,28 @@ class _ExperiencesState extends State<Experiences> {
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 5,
                       ),
                       Text(
-                        "Nulla tortor facilisis vitae neque viverra felis, sagittis sem quis. Ut vitae molestie etiam ut. Felis erat egestas nisi, lacinia amet sit iaculis. Eget gravida faucibus consectetur pharetra, justo elit. Tellus nec est nunc nibh erat semper accumsan pellentesque. Volutpat et tristique cursus non arcu vitae. Porttitor proin sociis pretium gravida nulla. Blandit nulla a egestas posuere urna nunc donec nibh. Id sit et gravida at rhoncus. Lobortis dignissim arcu nisl at velit netus.",
+                        current.company,
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w500),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
-                        child: MaterialButton(
-                          onPressed: () {},
-                          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                          child: Text(
-                            "Read More >",
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold),
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          textColor: Colors.black,
-                          color: secondaryColor,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w800,
                         ),
-                      )
+                        textAlign: TextAlign.start,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Column(
+                        children: experiences.elementAt(index).points.map((e) {
+                          return Text(
+                            "\u2022 " + e,
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w500),
+                          );
+                        }).toList(),
+                      ),
                     ],
                   ),
                 ),
@@ -187,15 +184,13 @@ class _ExperiencesState extends State<Experiences> {
           ),
         ),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
                 padding: const EdgeInsets.all(5.5),
-                child: Text(
-                  "MM/YYYY",
-                  style: TextStyle(color: Colors.transparent),
-                ),
+                child: Text(current.end),
               ),
             ),
             Container(
@@ -221,7 +216,7 @@ class _ExperiencesState extends State<Experiences> {
                 child: Padding(
                   padding: const EdgeInsets.all(5.5),
                   child: Text(
-                    "MM/YYYY",
+                    current.start,
                   ),
                 ),
               ),
